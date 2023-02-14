@@ -16,6 +16,8 @@ type serviceAdmin struct {
 
 type ServiceAdmin interface {
 	RegisterAdmin(registerAdmin input.RegisterAdmin) error
+	LoginAdmin(login input.Login) (bool, error)
+	GetAdminByEmail(email string) (models.Admin, error)
 }
 
 func NewServiceAdmin(repositoryAdmin repository.RepositoryAdmin, repositoryStore repository.RepositoryStore) *serviceAdmin {
@@ -56,4 +58,23 @@ func (s *serviceAdmin) RegisterAdmin(registerAdmin input.RegisterAdmin) error {
 	}
 
 	return nil
+}
+
+func (s *serviceAdmin) LoginAdmin(login input.Login) (bool, error) {
+	admin, err := s.repositoryAdmin.GetAdminByEmail(login.Email)
+	if err != nil {
+		return false, err
+	}
+	if admin.Email == "" {
+		return false, nil
+	}
+
+	ok := helper.CheckPasswordHash(login.Password, admin.Password)
+
+	return ok, nil
+}
+
+func (s *serviceAdmin) GetAdminByEmail(email string) (models.Admin, error) {
+	admin, err := s.repositoryAdmin.GetAdminByEmail(email)
+	return admin, err
 }
