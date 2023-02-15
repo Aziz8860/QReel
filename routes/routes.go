@@ -2,6 +2,7 @@ package routes
 
 import (
 	"qreel/controller"
+	"qreel/middleware"
 	"qreel/repository"
 	"qreel/service"
 
@@ -13,6 +14,7 @@ import (
 func InitRoutes(db *gorm.DB) *gin.Engine {
 	router := gin.Default()
 	router.Use(cors.Default())
+	router.Static("/images", "./src/images")
 
 	storeRepository := repository.NewRepositoryStore(db)
 
@@ -20,10 +22,17 @@ func InitRoutes(db *gorm.DB) *gin.Engine {
 	adminService := service.NewServiceAdmin(adminRepository, storeRepository)
 	adminController := controller.NewControllerAdmin(adminService)
 
+	itemRepository := repository.NewRepositoryItem(db)
+	itemService := service.NewServiceItem(itemRepository)
+	itemController := controller.NewControllerItem(itemService)
+
 	api := router.Group("/api/v1")
 	authAdmin := api.Group("/auth/admin")
 	authAdmin.POST("/register", adminController.Register)
 	authAdmin.POST("/login", adminController.Login)
+
+	item := api.Group("/item")
+	item.POST("/add", middleware.CheckAuthorizationAdmin(), itemController.PostItem)
 
 	return router
 }
