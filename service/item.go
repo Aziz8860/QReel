@@ -14,6 +14,7 @@ type serviceItem struct {
 
 type ServiceItem interface {
 	AddItem(item input.Item, storeId string) error
+	GetAllItemByStoreId(storeId string) ([]models.Item, error)
 }
 
 func NewServiceItem(repositoryItem repository.RepositoryItem) *serviceItem {
@@ -37,4 +38,9 @@ func (s *serviceItem) AddItem(item input.Item, storeId string) error {
 	}
 
 	return nil
+}
+
+func (s *serviceItem) GetAllItemByStoreId(storeId string) ([]models.Item, error) {
+	items, err := s.repositoryItem.GetAllItemByStoreId(storeId)
+	return items, err
 }

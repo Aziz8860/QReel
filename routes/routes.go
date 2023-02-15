@@ -32,6 +32,7 @@ func InitRoutes(db *gorm.DB) *gin.Engine {
 	authAdmin.POST("/login", adminController.Login)
 
 	item := api.Group("/item")
+	item.GET("/", middleware.CheckAuthorizationAdmin(), itemController.GetAllItem)
 	item.POST("/add", middleware.CheckAuthorizationAdmin(), itemController.PostItem)
 
 	return router

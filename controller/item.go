@@ -51,3 +51,21 @@ func (ctr *controllerItem) PostItem(c *gin.Context) {
 		"message": "success add item",
 	})
 }
+
+func (ctr *controllerItem) GetAllItem(c *gin.Context) {
+	storeId := c.MustGet("storeId")
+	storeIdString := fmt.Sprintf("%s", storeId)
+
+	items, err := ctr.serviceItem.GetAllItemByStoreId(storeIdString)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "failed" + err.Error(),
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "success add item",
+		"data":    items,
+	})
+}
