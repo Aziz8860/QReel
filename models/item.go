@@ -1,9 +1,9 @@
 package models
 
 type Item struct {
-	Id      string
-	StoreId string
-	Name    string
-	Image   string
-	Price   float64
+	Id      string  `json:"id"`
+	StoreId string  `json:"storeId"`
+	Name    string  `json:"name"`
+	Image   string  `json:"image"`
+	Price   float64 `json:"price"`
 }
