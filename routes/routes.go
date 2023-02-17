@@ -22,14 +22,22 @@ func InitRoutes(db *gorm.DB) *gin.Engine {
 	adminService := service.NewServiceAdmin(adminRepository, storeRepository)
 	adminController := controller.NewControllerAdmin(adminService)
 
+	userRepository := repository.NewRepositoryUser(db)
+	userService := service.NewServiceUser(userRepository)
+	userController := controller.NewControllerUser(userService)
+
 	itemRepository := repository.NewRepositoryItem(db)
 	itemService := service.NewServiceItem(itemRepository)
 	itemController := controller.NewControllerItem(itemService)
 
 	api := router.Group("/api/v1")
+
 	authAdmin := api.Group("/auth/admin")
 	authAdmin.POST("/register", adminController.Register)
 	authAdmin.POST("/login", adminController.Login)
+
+	authUser := api.Group("/auth/user")
+	authUser.POST("/register", userController.Register)
 
 	item := api.Group("/item")
 	item.GET("/", middleware.CheckAuthorizationAdmin(), itemController.GetAllItem)

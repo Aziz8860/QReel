@@ -8,3 +8,11 @@ type RegisterAdmin struct {
 	Store    string `json:"store" binding:"required"`
 	Address  string `json:"address" binding:"required"`
 }
+
+type RegisterUser struct {
+	Email        string `json:"email" binding:"required,email"`
+	Password     string `json:"password" binding:"required"`
+	Name         string `json:"name" binding:"required"`
+	Phone        int    `json:"phone" binding:"required"`
+	ReferralCode string `json:"referralCode"`
+}

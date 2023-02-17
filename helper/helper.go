@@ -1,6 +1,7 @@
 package helper
 
 import (
+	"math/rand"
 	"qreel/config"
 	"qreel/models"
 	"time"
@@ -36,4 +37,17 @@ func GenerateTokenAdmin(admin models.Admin) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	signedToken, err := token.SignedString([]byte(config.JwtKey))
 	return signedToken, err
+}
+
+func GenerateCode() string {
+	rand.Seed(time.Now().UnixNano())
+
+	const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+	var result string
+	for i := 0; i < 20; i++ {
+		result += string(charset[rand.Intn(len(charset))])
+	}
+
+	return result
 }
