@@ -18,3 +18,14 @@ type CustomClaimsAdmin struct {
 	Role    string
 	jwt.RegisteredClaims
 }
+
+type CustomClaimsUser struct {
+	Id     string
+	Email  string
+	Name   string
+	Image  string
+	Phone  int
+	Budget float64
+	Point  int
+	jwt.RegisteredClaims
+}

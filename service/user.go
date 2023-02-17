@@ -15,6 +15,8 @@ type serviceUser struct {
 
 type ServiceUser interface {
 	RegisterUser(registerUser input.RegisterUser) error
+	LoginUser(login input.Login) (bool, error)
+	GetUserByEmail(email string) (models.User, error)
 }
 
 func NewServiceUser(repositoryUser repository.RepositoryUser) *serviceUser {
@@ -61,4 +63,23 @@ func (s *serviceUser) RegisterUser(registerUser input.RegisterUser) error {
 	}
 
 	return nil
+}
+
+func (s *serviceUser) LoginUser(login input.Login) (bool, error) {
+	user, err := s.repositoryUser.GetUserByEmail(login.Email)
+	if err != nil {
+		return false, err
+	}
+	if user.Email == "" {
+		return false, nil
+	}
+
+	ok := helper.CheckPasswordHash(login.Password, user.Password)
+
+	return ok, nil
+}
+
+func (s *serviceUser) GetUserByEmail(email string) (models.User, error) {
+	user, err := s.repositoryUser.GetUserByEmail(email)
+	return user, err
 }

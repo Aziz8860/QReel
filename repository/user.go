@@ -14,6 +14,7 @@ type RepositoryUser interface {
 	CreateUser(user models.User) error
 	FindUserByCode(code string) (models.User, error)
 	UpdatePointUser(userId string, point int) error
+	GetUserByEmail(email string) (models.User, error)
 }
 
 func NewRepositoryUser(DB *gorm.DB) *repositoryUser {
@@ -38,4 +39,11 @@ func (r *repositoryUser) UpdatePointUser(userId string, point int) error {
 	query := `UPDATE user SET point = ? WHERE id = ?`
 	err := r.DB.Exec(query, point, userId).Error
 	return err
+}
+
+func (r *repositoryUser) GetUserByEmail(email string) (models.User, error) {
+	var user models.User
+	query := `SELECT * FROM "user" WHERE email = ?`
+	err := r.DB.Raw(query, email).Scan(&user).Error
+	return user, err
 }

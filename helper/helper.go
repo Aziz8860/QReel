@@ -39,6 +39,25 @@ func GenerateTokenAdmin(admin models.Admin) (string, error) {
 	return signedToken, err
 }
 
+func GenerateTokenUser(user models.User) (string, error) {
+	claims := config.CustomClaimsUser{
+		Id:     user.Id,
+		Email:  user.Email,
+		Name:   user.Name,
+		Image:  user.Image,
+		Phone:  user.Phone,
+		Budget: user.Budget,
+		Point:  user.Point,
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour * 168)),
+			Issuer:    "qreel",
+		},
+	}
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	signedToken, err := token.SignedString([]byte(config.JwtKey))
+	return signedToken, err
+}
+
 func GenerateCode() string {
 	rand.Seed(time.Now().UnixNano())
 
