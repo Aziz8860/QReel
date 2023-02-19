@@ -50,6 +50,7 @@ func InitRoutes(db *gorm.DB) *gin.Engine {
 
 	transaction := api.Group("/transaction")
 	transaction.GET("/", middleware.CheckAuthorizationUser(), transactionController.GetAllTransactions)
+	transaction.GET("/detail-transaction/:transactionId", middleware.CheckAuthorizationUser(), transactionController.GetAllDetailTransaction)
 	transaction.POST("/add", middleware.CheckAuthorizationUser(), transactionController.PostTransaction)
 
 	return router

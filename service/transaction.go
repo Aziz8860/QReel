@@ -18,6 +18,7 @@ type serviceTransaction struct {
 type ServiceTransaction interface {
 	AddTransaction(transaction input.Transaction, userId string) error
 	GetAllTransactions(userId string) ([]response.Transaction, error)
+	GetDetailTransactionByTransactionId(transactionId string) ([]response.DetailTransaction, error)
 }
 
 func NewServiceTransaction(repositoryTrasaction repository.RepositoryTransaction, repositoryItem repository.RepositoryItem) *serviceTransaction {
@@ -65,4 +66,9 @@ func (s *serviceTransaction) AddTransaction(transaction input.Transaction, userI
 func (s *serviceTransaction) GetAllTransactions(userId string) ([]response.Transaction, error) {
 	transactions, err := s.repositoryTransaction.GetAllTransactionByUserId(userId)
 	return transactions, err
+}
+
+func (s *serviceTransaction) GetDetailTransactionByTransactionId(transactionId string) ([]response.DetailTransaction, error) {
+	detailTransactions, err := s.repositoryTransaction.GetAllDetailTransactionByTransactionId(transactionId)
+	return detailTransactions, err
 }

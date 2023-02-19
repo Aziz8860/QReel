@@ -15,6 +15,7 @@ type RepositoryTransaction interface {
 	CreateTransaction(transaction models.Transaction) error
 	CreateDetailTransaction(detailTransaction models.DetailTransaction) error
 	GetAllTransactionByUserId(userId string) ([]response.Transaction, error)
+	GetAllDetailTransactionByTransactionId(transactionId string) ([]response.DetailTransaction, error)
 }
 
 func NewRepositoryTransaction(DB *gorm.DB) *repositoryTransaction {
@@ -43,4 +44,15 @@ func (r *repositoryTransaction) GetAllTransactionByUserId(userId string) ([]resp
 	WHERE user_id = ?`
 	err := r.DB.Raw(query, userId).Scan(&transactions).Error
 	return transactions, err
+}
+
+func (r *repositoryTransaction) GetAllDetailTransactionByTransactionId(transactionId string) ([]response.DetailTransaction, error) {
+	var detailTransactions []response.DetailTransaction
+	query := `SELECT dt.id, dt.transaction_id, dt.item_id, i."name", dt.quantity, dt.price
+	FROM detail_transaction dt 
+	LEFT JOIN "transaction" t ON dt.transaction_id = t.id
+	LEFT JOIN item i ON dt.item_id = i.id 
+	WHERE t.id = ?`
+	err := r.DB.Raw(query, transactionId).Scan(&detailTransactions).Error
+	return detailTransactions, err
 }

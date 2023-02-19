@@ -59,3 +59,19 @@ func (ctr *controllerTransaction) GetAllTransactions(c *gin.Context) {
 		"data":    transactions,
 	})
 }
+
+func (ctr *controllerTransaction) GetAllDetailTransaction(c *gin.Context) {
+	transactionId := c.Param("transactionId")
+	detailTransactions, err := ctr.serviceTransaction.GetDetailTransactionByTransactionId(transactionId)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "failed" + err.Error(),
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "success",
+		"data":    detailTransactions,
+	})
+}

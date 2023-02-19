@@ -12,3 +12,12 @@ type Transaction struct {
 	Payment    string    `json:"payment"`
 	TotalPrice float64   `json:"totalPrice"`
 }
+
+type DetailTransaction struct {
+	Id            string  `json:"id"`
+	TransactionId string  `json:"transactionId"`
+	ItemId        string  `json:"itemId"`
+	Name          string  `json:"itemName"`
+	Quantity      int     `json:"quantity"`
+	Price         float64 `json:"price"`
+}
