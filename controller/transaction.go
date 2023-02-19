@@ -41,3 +41,21 @@ func (ctr *controllerTransaction) PostTransaction(c *gin.Context) {
 		"message": "success add transaction",
 	})
 }
+
+func (ctr *controllerTransaction) GetAllTransactions(c *gin.Context) {
+	userId := c.MustGet("userId")
+	userIdString := fmt.Sprintf("%s", userId)
+
+	transactions, err := ctr.serviceTransaction.GetAllTransactions(userIdString)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "failed" + err.Error(),
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "success",
+		"data":    transactions,
+	})
+}
