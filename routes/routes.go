@@ -30,6 +30,10 @@ func InitRoutes(db *gorm.DB) *gin.Engine {
 	itemService := service.NewServiceItem(itemRepository)
 	itemController := controller.NewControllerItem(itemService)
 
+	transactionRepository := repository.NewRepositoryTransaction(db)
+	transactionService := service.NewServiceTransaction(transactionRepository, itemRepository)
+	transactionController := controller.NewControllerTransaction(transactionService)
+
 	api := router.Group("/api/v1")
 
 	authAdmin := api.Group("/auth/admin")
@@ -43,6 +47,9 @@ func InitRoutes(db *gorm.DB) *gin.Engine {
 	item := api.Group("/item")
 	item.GET("/", middleware.CheckAuthorizationAdmin(), itemController.GetAllItem)
 	item.POST("/add", middleware.CheckAuthorizationAdmin(), itemController.PostItem)
+
+	transaction := api.Group("/transaction")
+	transaction.POST("/add", middleware.CheckAuthorizationUser(), transactionController.PostTransaction)
 
 	return router
 }

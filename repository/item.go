@@ -13,6 +13,7 @@ type repositoryItem struct {
 type RepositoryItem interface {
 	CreateItem(item models.Item) error
 	GetAllItemByStoreId(storeId string) ([]models.Item, error)
+	GetItemByNameAndStoreId(name, storeId string) (models.Item, error)
 }
 
 func NewRepositoryItem(DB *gorm.DB) *repositoryItem {
@@ -30,4 +31,11 @@ func (r *repositoryItem) GetAllItemByStoreId(storeId string) ([]models.Item, err
 	query := `SELECT * FROM item WHERE store_id = ?`
 	err := r.DB.Raw(query, storeId).Scan(&items).Error
 	return items, err
+}
+
+func (r *repositoryItem) GetItemByNameAndStoreId(name, storeId string) (models.Item, error) {
+	var item models.Item
+	query := `SELECT * FROM item WHERE name = ? AND store_id = ?`
+	err := r.DB.Raw(query, name, storeId).Scan(&item).Error
+	return item, err
 }
