@@ -30,6 +30,7 @@ func (s *serviceItem) AddItem(item input.Item, storeId string) error {
 		Name:    item.Name,
 		Image:   item.Image,
 		Price:   item.Price,
+		SKU:     item.SKU,
 	}
 
 	err := s.repositoryItem.CreateItem(newItem)

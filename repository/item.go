@@ -21,8 +21,8 @@ func NewRepositoryItem(DB *gorm.DB) *repositoryItem {
 }
 
 func (r *repositoryItem) CreateItem(item models.Item) error {
-	query := `INSERT INTO item (id, store_id, name, image, price) VALUES (?, ?, ?, ?, ?)`
-	err := r.DB.Exec(query, item.Id, item.StoreId, item.Name, item.Image, item.Price).Error
+	query := `INSERT INTO item (id, store_id, name, image, price, sku) VALUES (?, ?, ?, ?, ?, ?)`
+	err := r.DB.Exec(query, item.Id, item.StoreId, item.Name, item.Image, item.Price, item.SKU).Error
 	return err
 }
 
