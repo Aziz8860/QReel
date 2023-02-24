@@ -53,7 +53,7 @@ export default class Home extends Component {
               <View style={styles.card}>
                 <Image source={Nutella} style={styles.image} />
                 <View style={styles.content}>
-                  <View style={{ alignItems: 'flex-start' }}>
+                  <View style={{ alignItems: 'flex-start'}}>
                     <Text numberOfLines={2} style={styles.brandName}>
                       Nutella Spread 170 g
                     </Text>

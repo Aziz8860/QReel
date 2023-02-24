@@ -26,6 +26,8 @@ import IconTransactionActive from './transaction-active.svg';
 import IconCamera from './camera.svg'
 import IconCartEmpty from './cart-empty.svg'
 import IconProfilePicture from './profile-picture.svg'
+import IconAddPhoto from './addphoto-icon.svg'
+import IconShoppingCart from './shopping-cart-icon.svg'
 
 export {
   IconHome,
@@ -55,5 +57,7 @@ export {
   IconTransactionActive,
   IconCamera,
   IconCartEmpty,
-  IconProfilePicture
+  IconProfilePicture,
+  IconAddPhoto,
+  IconShoppingCart
 };

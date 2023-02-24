@@ -12,6 +12,10 @@ import {
   Login,
   AddCatalogue,
   Receipt,
+  PersonalData,
+  AddToCart,
+Payment,
+ShowQR,
 } from '../pages';
 import {BottomNavigator} from '../components';
 import {LogoText} from '../assets';
@@ -86,6 +90,88 @@ const Router = () => {
         name="Login"
         component={Login}
         options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="AddToCart"
+        component={AddToCart}
+        options={{
+          headerBackImageSource: require('../assets/icons/arrow-back-png.png'),
+          headerStyle: {
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 4,
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: 4.65,
+            elevation: 8,
+          },
+          headerTitle: 'Add to Cart',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontFamily: fonts.primary.semiBold,
+            fontSize: 18,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Payment"
+        component={Payment}
+        options={{
+          headerBackImageSource: require('../assets/icons/arrow-back-png.png'),
+          headerStyle: {
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 4,
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: 4.65,
+            elevation: 8,
+          },
+          headerTitle: 'Payment',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontFamily: fonts.primary.semiBold,
+            fontSize: 18,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="ShowQR"
+        component={ShowQR}
+        options={{
+          headerBackImageSource: require('../assets/icons/arrow-back-png.png'),
+          headerStyle: {
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 4,
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: 4.65,
+            elevation: 8,
+          },
+          headerTitle: 'Show QR',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontFamily: fonts.primary.semiBold,
+            fontSize: 18,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="PersonalData"
+        component={PersonalData}
+        options={{
+          headerBackImageSource: require('../assets/icons/arrow-back-png.png'),
+          title: 'Personal Data',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontFamily: fonts.primary.semiBold,
+            fontSize: 18,
+          },
+        }}
       />
       <Stack.Screen
         name="Receipt"

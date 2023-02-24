@@ -24,7 +24,6 @@ export default class Profile extends Component {
       <View style={styles.container}>
         <View style={styles.contentProfile}>
           <IconProfilePicture width={responsiveHeight(64).toString()} height={responsiveHeight(64).toString()}/>
-          {/* <Image source={IconProfilePicture} style={styles.profpic} /> */}
           <View style={{marginLeft: responsiveWidth(20)}}>
             <Text style={styles.name}>Andre Aulia</Text>
           </View>
@@ -36,7 +35,7 @@ export default class Profile extends Component {
               <IconDataProfile />
               <Text style={styles.textMenu}>Personal Data</Text>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("PersonalData")}>
               <IconNext />
             </TouchableOpacity>
           </View>
@@ -51,7 +50,7 @@ export default class Profile extends Component {
           </View>
         </View>
 
-        <View style={styles.contentRow}>
+        <View style={[styles.contentRow, {height: responsiveHeight(180)}]}>
           <View style={styles.row}>
             <View style={{flexDirection: 'row'}}>
               <IconHelp />
@@ -64,7 +63,16 @@ export default class Profile extends Component {
           <View style={styles.row}>
             <View style={{flexDirection: 'row'}}>
               <IconTerms />
-              <Text style={styles.textMenu}>Syarat Ketentuan</Text>
+              <Text style={styles.textMenu}>Terms and Condition</Text>
+            </View>
+            <TouchableOpacity>
+              <IconNext />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.row}>
+            <View style={{flexDirection: 'row'}}>
+              <IconPhone />
+              <Text style={styles.textMenu}>About Apps</Text>
             </View>
             <TouchableOpacity>
               <IconNext />
@@ -76,9 +84,9 @@ export default class Profile extends Component {
           <TouchableOpacity
             style={styles.button}
             onPress={() => navigation.replace('Welcome')}>
-            <Text style={styles.logoutText}>Keluar</Text>
+            <Text style={styles.logoutText}>Logout</Text>
           </TouchableOpacity>
-          <Text style={styles.versionText}>QRin App Version 0.1</Text>
+          <Text style={styles.versionText}>QReel App Version 1.0</Text>
         </View>
       </View>
     );
@@ -135,7 +143,8 @@ const styles = StyleSheet.create({
   },
   bottomSection: {
     flex: 1,
-    marginTop: responsiveHeight(6),
+    justifyContent: 'flex-end',
+    paddingBottom: responsiveHeight(140),
     backgroundColor: colors.white,
     paddingHorizontal: responsiveWidth(20),
   },

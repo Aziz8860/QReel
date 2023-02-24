@@ -6,7 +6,11 @@ import Notification from './Notification';
 import Register from './Register';
 import Login from './Login';
 import AddCatalogue from './AddCatalogue';
-import Receipt from './Receipt'
+import Receipt from './Receipt';
+import PersonalData from './PersonalData';
+import AddToCart from './AddToCart';
+import Payment from './Payment';
+import ShowQR from './ShowQR';
 
 export {
   Home,
@@ -17,5 +21,9 @@ export {
   Register,
   Login,
   AddCatalogue,
-  Receipt
+  Receipt,
+  PersonalData,
+  AddToCart,
+  Payment,
+  ShowQR,
 };
