@@ -84,7 +84,7 @@ func (ctr *controllerAdmin) Login(c *gin.Context) {
 	})
 }
 
-func (ctr *controllerAdmin) CheckUser(c *gin.Context) {
+func (ctr *controllerAdmin) CheckAdmin(c *gin.Context) {
 	email := c.MustGet("email")
 	emailString := fmt.Sprintf("%s", email)
 
