@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
 	"qreel/helper"
 	"qreel/models/input"
@@ -80,5 +81,25 @@ func (ctr *controllerAdmin) Login(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"message": "success",
 		"token":   signedToken,
+	})
+}
+
+func (ctr *controllerAdmin) CheckUser(c *gin.Context) {
+	email := c.MustGet("email")
+	emailString := fmt.Sprintf("%s", email)
+
+	admin, err := ctr.serviceAdmin.GetAdminByEmail(emailString)
+	if err != nil {
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"message": "failed " + err.Error(),
+			})
+			return
+		}
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "success",
+		"data":    admin,
 	})
 }

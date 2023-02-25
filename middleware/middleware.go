@@ -57,10 +57,12 @@ func CheckAuthorizationAdmin() gin.HandlerFunc {
 		}
 
 		adminId := claim["Id"].(string)
+		email := claim["Email"].(string)
 		storeId := claim["StoreId"].(string)
 		Role := claim["Role"].(string)
 
 		c.Set("adminId", adminId)
+		c.Set("email", email)
 		c.Set("storeId", storeId)
 		c.Set("role", Role)
 
