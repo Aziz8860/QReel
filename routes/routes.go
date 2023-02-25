@@ -42,6 +42,7 @@ func InitRoutes(db *gorm.DB) *gin.Engine {
 	authAdmin.POST("/login", adminController.Login)
 
 	authUser := api.Group("/auth/user")
+	authUser.GET("/", middleware.CheckAuthorizationUser(), userController.CheckUser)
 	authUser.POST("/register", userController.Register)
 	authUser.POST("/login", userController.Login)
 

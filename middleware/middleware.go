@@ -117,8 +117,10 @@ func CheckAuthorizationUser() gin.HandlerFunc {
 		}
 
 		userId := claim["Id"].(string)
+		email := claim["Email"].(string)
 
 		c.Set("userId", userId)
+		c.Set("email", email)
 
 		c.Next()
 	}
