@@ -9,7 +9,7 @@ import {
 import React, {Component} from 'react';
 import {fonts, colors, responsiveHeight, responsiveWidth} from '../../utils';
 import {HeaderWithSearch} from '../../components';
-import {BlueBand, Nutella, Ceres, SariRoti, IconShowQR} from '../../assets';
+import {BlueBand, Nutella, Ceres, SariRoti, IconShowQR, Indomilk, Panadol} from '../../assets';
 
 export default class Home extends Component {
   constructor(props) {
@@ -96,11 +96,11 @@ export default class Home extends Component {
               </View>
 
               <View style={styles.card}>
-                <Image source={Ceres} style={styles.image} />
+                <Image source={Indomilk} style={styles.image} />
                 <View style={styles.content}>
                   <View style={{ alignItems: 'flex-start' }}>
                     <Text numberOfLines={2} style={styles.brandName}>
-                      Meses Ceres Coklat 140 g
+                      Indomilk Susu Murni Plain Can - 189 ml
                     </Text>
                     <Text style={styles.brandPrice}>Rp9.000</Text>
                     <TouchableOpacity style={styles.buttonDetail}>
@@ -111,13 +111,13 @@ export default class Home extends Component {
               </View>
 
               <View style={styles.card}>
-                <Image source={Ceres} style={styles.image} />
+                <Image source={Panadol} style={styles.image} />
                 <View style={styles.content}>
                   <View style={{ alignItems: 'flex-start' }}>
                     <Text numberOfLines={2} style={styles.brandName}>
-                      Meses Ceres Coklat 140 g
+                      Panadol Biru Tablet 10'S
                     </Text>
-                    <Text style={styles.brandPrice}>Rp9.000</Text>
+                    <Text style={styles.brandPrice}>Rp10.000</Text>
                     <TouchableOpacity style={styles.buttonDetail}>
                       <Text style={styles.textAdd}>Detail</Text>
                     </TouchableOpacity>

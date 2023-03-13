@@ -61,7 +61,7 @@ export default class Login extends Component {
         if (result.status == 200) {
           // AsyncStorage.setItem('AccessToken', result.data.token);
           ToastAndroid.show('Login Berhasil', ToastAndroid.SHORT);
-          this.props.navigation.navigate('Home');
+          this.props.navigation.navigate('MainApp');
           console.log(result.data.token);
         } else {
           Alert.alert('Login Failed', 'Wrong email or password');
@@ -224,5 +224,15 @@ const styles = StyleSheet.create({
     bottom: 0,
     position: 'absolute',
     zIndex: -1,
+  },
+
+  rnholeView: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
 });

@@ -16,6 +16,9 @@ import SariRoti from './Sari-Roti.png';
 import Ceres from './Ceres.png';
 import QRExample from './qr-example.png'
 import TransactionImage from './TransactionBackgroundImg.png'
+import EmptyCart from './empty-cart.svg'
+import Panadol from './Panadol.png'
+import Indomilk from './Indomilk.png'
 
 export {
   Logo,
@@ -35,5 +38,8 @@ export {
   SariRoti,
   Ceres,
   QRExample,
-  TransactionImage
+  TransactionImage,
+  EmptyCart,
+  Panadol,
+  Indomilk
 };

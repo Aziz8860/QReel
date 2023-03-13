@@ -1,197 +1,139 @@
 import {
   Text,
   StyleSheet,
-  View,
-  Image,
-  TouchableOpacity,
-  ScrollView,
   Dimensions,
+  useWindowDimensions,
 } from 'react-native';
 import React, {Component} from 'react';
-import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
+import {TabView, TabBar} from 'react-native-tab-view';
 import {fonts, colors, responsiveHeight, responsiveWidth} from '../../utils';
-import {
-  BlueBand,
-  Nutella,
-  Ceres,
-  SariRoti,
-  IconShowQR,
-  IconShoppingCart,
-} from '../../assets';
+import AddToCartSearch from '../AddToCartSearch'
+import Scanner from '../Scanner'
+import AddToCartScanner from '../AddToCartScanner'
 
 const initialLayout = {width: Dimensions.get('window').width};
 
-const FirstRoute = ({ navigation }) => <View style={{flex: 1, backgroundColor: '#ff4081'}} />;
+// const FirstRoute = ({navigation}) => {
+//   const devices = useCameraDevices();
+//   const device = devices.back;
 
-const SecondRoute = ({ navigation }) => (
-  <View>
-    <ScrollView
-      contentContainerStyle={{
-        paddingBottom: responsiveHeight(44),
-        paddingHorizontal: responsiveWidth(20),
-        backgroundColor: colors.white,
-      }}>
-      <View style={styles.cardWrapper}>
-        <View style={styles.card}>
-          <Image source={BlueBand} style={styles.image} />
-          <View style={styles.content}>
-            <View style={{alignItems: 'flex-start'}}>
-              <Text numberOfLines={2} style={styles.brandName}>
-                Blue Band Serbaguna
-              </Text>
-              <Text style={styles.brandPrice}>Rp14.000</Text>
-              <TouchableOpacity style={styles.buttonDetail}>
-                <Text style={styles.textAdd}>Add</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+//   const [frameProcessor, barcodes] = useScanBarcodes([
+//     BarcodeFormat.ALL_FORMATS, // You can only specify a particular format
+//   ]);
 
-        <View style={styles.card}>
-          <Image source={Nutella} style={styles.image} />
-          <View style={styles.content}>
-            <View style={{alignItems: 'flex-start'}}>
-              <Text numberOfLines={2} style={styles.brandName}>
-                Nutella Spread 170 g
-              </Text>
-              <Text style={styles.brandPrice}>Rp47.000</Text>
-              <TouchableOpacity style={styles.buttonDetail}>
-                <Text style={styles.textAdd}>Add</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+//   const [barcode, setBarcode] = React.useState('');
+//   const [hasPermission, setHasPermission] = React.useState(false);
+//   const [isScanned, setIsScanned] = React.useState(false);
 
-        <View style={styles.card}>
-          <Image source={Ceres} style={styles.image} />
-          <View style={styles.content}>
-            <View style={{alignItems: 'flex-start'}}>
-              <Text numberOfLines={2} style={styles.brandName}>
-                Meses Ceres Coklat 140 g
-              </Text>
-              <Text style={styles.brandPrice}>Rp9.000</Text>
-              <TouchableOpacity style={styles.buttonDetail}>
-                <Text style={styles.textAdd}>Add</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+//   React.useEffect(() => {
+//     checkCameraPermission();
+//   }, []);
 
-        <View style={styles.card}>
-          <Image source={SariRoti} style={styles.image} />
-          <View style={styles.content}>
-            <View style={{alignItems: 'flex-start'}}>
-              <Text numberOfLines={2} style={styles.brandName}>
-                Sari Roti Tawar 470 g
-              </Text>
-              <Text style={styles.brandPrice}>Rp15.000</Text>
-              <TouchableOpacity style={styles.buttonDetail}>
-                <Text style={styles.textAdd}>Add</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+//   const checkCameraPermission = async () => {
+//     const status = await Camera.getCameraPermissionStatus();
+//     setHasPermission(status === 'authorized');
+//   };
 
-        <View style={styles.card}>
-          <Image source={Ceres} style={styles.image} />
-          <View style={styles.content}>
-            <View style={{alignItems: 'flex-start'}}>
-              <Text numberOfLines={2} style={styles.brandName}>
-                Meses Ceres Coklat 140 g
-              </Text>
-              <Text style={styles.brandPrice}>Rp9.000</Text>
-              <TouchableOpacity style={styles.buttonDetail}>
-                <Text style={styles.textAdd}>Add</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+//   React.useEffect(() => {
+//     toggleActiveState();
+//     return () => {
+//       barcodes;
+//     };
+//   }, [barcodes]);
 
-        <View style={styles.card}>
-          <Image source={Ceres} style={styles.image} />
-          <View style={styles.content}>
-            <View style={{alignItems: 'flex-start'}}>
-              <Text numberOfLines={2} style={styles.brandName}>
-                Meses Ceres Coklat 140 g
-              </Text>
-              <Text style={styles.brandPrice}>Rp9.000</Text>
-              <TouchableOpacity style={styles.buttonDetail}>
-                <Text style={styles.textAdd}>Add</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </View>
+//   const toggleActiveState = async () => {
+//     if (barcodes && barcodes.length > 0 && isScanned === false) {
+//       setIsScanned(true);
+//       // setBarcode('');
+//       barcodes.forEach(async scannedBarcode => {
+//         if (scannedBarcode.rawValue !== '') {
+//           setBarcode(scannedBarcode.rawValue);
+//           Alert.alert(barcode);
+//         }
+//       });
+//     }
+//   };
 
-      <View style={styles.buttonAndCart}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('Payment')}>
-          <Text style={styles.textButton}>Done</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonCart}>
-          <View style={styles.amountCircle}>
-            <Text style={styles.textAmountCircle}>0</Text>
-          </View>
-          <IconShoppingCart />
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
-  </View>
+//   return (
+//     device != null &&
+//     hasPermission && (
+//       <>
+//         <StatusBar barStyle="light-content" backgroundColor="#000000" />
+//         <Camera
+//           style={StyleSheet.absoluteFill}
+//           device={device}
+//           isActive={!isScanned}
+//           frameProcessor={frameProcessor}
+//           frameProcessorFps={5}
+//           audio={false}
+//         />
+//         {/* <RNHoleView
+//               holes={[
+//                 {
+//                   x: widthToDp('8.5%'),
+//                   y: heightToDp('36%'),
+//                   width: widthToDp('83%'),
+//                   height: heightToDp('20%'),
+//                   borderRadius: 10,
+//                 },
+//               ]}
+//               style={styles.rnholeView}
+//             /> */}
+//       </>
+//     )
+//   );
+// };
+
+
+const renderScene = ({route}) => {
+  switch (route.key) {
+    case 'first':
+      // return <Scanner />;
+      return <AddToCartScanner />
+    case 'second':
+      return <AddToCartSearch />;
+    default:
+      return null;
+  }
+};
+
+const renderTabBar = props => (
+  <TabBar
+    {...props}
+    renderLabel={({route, color}) => (
+      <Text
+        style={{
+          color: 'white',
+          margin: 2,
+          fontFamily: fonts.primary.medium,
+        }}>
+        {route.title}
+      </Text>
+    )}
+    indicatorStyle={{backgroundColor: 'white'}}
+    style={{backgroundColor: colors.green600}}
+  />
 );
 
-export default class AddToCart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      index: 0,
-      routes: [
-        {key: 'first', title: 'First'},
-        {key: 'second', title: 'Second'},
-      ],
-    };
-  }
+export default function AddToCart(props) {
+  const layout = useWindowDimensions();
 
-  renderScene = ({ route }) => {
-    switch (route.key) {
-      case 'first':
-        return <FirstRoute navigation={this.props.navigation} />
-      case 'second':
-        return <SecondRoute navigation={this.props.navigation} />
-      default:
-        return null;
-    }
-  }
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    {key: 'first', title: 'Scan'},
+    {key: 'second', title: 'Search'},
+  ]);
 
-  render() {
-    const {navigation} = this.props
-    return (
-      <TabView
-        navigationState={this.state}
-        renderTabBar={props => (
-          <TabBar
-            {...props}
-            renderLabel={({route, color}) => (
-              <Text
-                style={{
-                  color: 'white',
-                  margin: 8,
-                  fontFamily: fonts.primary.medium,
-                }}>
-                {route.title}
-              </Text>
-            )}
-            indicatorStyle={{backgroundColor: 'white'}}
-            style={{backgroundColor: colors.green600}}
-          />
-        )}
-        renderScene={this.renderScene}
-        onIndexChange={index => this.setState({index})}
-        initialLayout={initialLayout}
-        style={styles.container}
-      />
-    );
-  }
+  return (
+    <TabView
+      {...props}
+      navigationState={{index, routes}}
+      renderScene={renderScene}
+      renderTabBar={renderTabBar}
+      onIndexChange={setIndex}
+      initialLayout={{width: layout.width}}
+    />
+  );
 }
 
 const styles = StyleSheet.create({

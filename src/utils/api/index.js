@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const ApiManager = axios.create({
-  baseURL: 'http://103.37.124.62:8080',
+  baseURL: 'http://147.139.195.203:8080',
   responseType: 'json',
   withCredentials: true,
 });

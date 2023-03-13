@@ -1,4 +1,12 @@
 {
   "name": "QReelCashier",
-  "displayName": "QReelCashier"
+  "displayName": "QReelCashier",
+  "plugins": [
+    [
+      "react-native-vision-camera",
+      {
+        "cameraPermissionText": "QReel needs access to your Camera."
+      }
+    ]
+  ]
 }

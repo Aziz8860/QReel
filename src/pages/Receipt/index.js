@@ -2,6 +2,7 @@ import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
 import React, {Component} from 'react';
 import {colors, fonts, responsiveWidth, responsiveHeight} from '../../utils';
 import {CardCartItem} from '../../components';
+import {EmptyCart} from '../../assets';
 
 export default class Receipt extends Component {
   render() {
@@ -10,8 +11,12 @@ export default class Receipt extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.contentContainer}>
-          <CardCartItem />
-          <CardCartItem />
+          <View
+            style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
+            <EmptyCart />
+            <Text style={styles.emptyText}>You haven’t add any item to</Text>
+            <Text style={styles.emptyText}>customer’s cart</Text>
+          </View>
         </View>
         <View style={styles.bottomContent}>
           <TouchableOpacity
@@ -19,9 +24,9 @@ export default class Receipt extends Component {
             onPress={() => navigation.navigate('AddToCart')}>
             <Text style={styles.buttonText}>+ Add to customer's cart</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          {/* <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}>Next</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     );
@@ -36,6 +41,12 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     paddingBottom: responsiveHeight(16),
+  },
+  emptyText: {
+    fontFamily: fonts.primary.regular,
+    fontSize: 12,
+    color: colors.grayBold,
+    marginTop: responsiveHeight(-4)
   },
   bottomContent: {
     marginBottom: responsiveHeight(24),

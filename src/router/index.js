@@ -14,8 +14,9 @@ import {
   Receipt,
   PersonalData,
   AddToCart,
-Payment,
-ShowQR,
+  Payment,
+  ShowQR,
+  AddToCartSearch,
 } from '../pages';
 import {BottomNavigator} from '../components';
 import {LogoText} from '../assets';

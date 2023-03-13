@@ -28,6 +28,8 @@ import IconCartEmpty from './cart-empty.svg'
 import IconProfilePicture from './profile-picture.svg'
 import IconAddPhoto from './addphoto-icon.svg'
 import IconShoppingCart from './shopping-cart-icon.svg'
+import IconFlashOn from './flash-on.svg'
+import IconScannerQRGreen from './QRCodeScannerGreen.png'
 
 export {
   IconHome,
@@ -59,5 +61,7 @@ export {
   IconCartEmpty,
   IconProfilePicture,
   IconAddPhoto,
-  IconShoppingCart
+  IconShoppingCart,
+  IconFlashOn,
+  IconScannerQRGreen
 };

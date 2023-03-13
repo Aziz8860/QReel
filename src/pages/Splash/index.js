@@ -6,7 +6,7 @@ import {colors, fonts, responsiveHeight, responsiveWidth} from '../../utils';
 export default class Splash extends Component {
   componentDidMount() {
     setTimeout(() => {
-      this.props.navigation.replace('AddToCart');
+      this.props.navigation.replace('MainApp');
     }, 1000); // set to 3000 or 1500
   }
 

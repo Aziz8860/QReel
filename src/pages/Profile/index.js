@@ -83,7 +83,7 @@ export default class Profile extends Component {
         <View style={styles.bottomSection}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.replace('Welcome')}>
+            onPress={() => navigation.replace('Login')}>
             <Text style={styles.logoutText}>Logout</Text>
           </TouchableOpacity>
           <Text style={styles.versionText}>QReel App Version 1.0</Text>
