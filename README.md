@@ -39,3 +39,8 @@ QReel is an application that supports the digitization of user’s journey durin
 
 ### SWOT Analysis
 <img width="3012" alt="SWOT Analysis" src="https://user-images.githubusercontent.com/72140828/224937803-688765b3-6e87-4d0c-8e15-c95d2a5b1527.png">
+
+---
+
+Link for QReel User: https://ipb.link/qreeluser
+Link for QReel Cashier: https://ipb.link/qreelcashier
