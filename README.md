@@ -10,7 +10,7 @@ QReel is an application that supports the digitization of user’s journey durin
 <img width="1500" alt="Playground Empathy Map" src="https://user-images.githubusercontent.com/72140828/224937677-f948b52d-9fbb-4caa-a166-c76f727c78b0.png">
 
 ### Customer Journey
-<img width="1505" alt="Customer Journey" src="https://user-images.githubuseages.githubusercontent.com/72140828/224937677-f948b52d-9fbb-4caa-a166-c76f727c78b0.png">
+<img width="1505" alt="Customer Journey" src="https://user-images.githubusercontent.com/72140828/224939227-60a08672-998a-4127-8027-db6f98401581.png">
 
 ### User Persona
 <img width="1500" alt="Playground Persona" src="https://user-images.githubusercontent.com/72140828/224937039-f1e0e1be-3943-4199-ae50-2db5a3d3dbf2.png">
@@ -24,7 +24,7 @@ QReel is an application that supports the digitization of user’s journey durin
 ### ERD
 
 ### Cloud-based System & Data Architecture 
-
+<img width="1920" alt="Architecture" src="https://user-images.githubusercontent.com/72140828/224939385-27d74b06-2211-4544-abc9-547038f625f0.png">
 
 ## Business Analysis
 
